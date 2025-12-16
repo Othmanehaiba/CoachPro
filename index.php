@@ -24,15 +24,15 @@
             
             <nav class="nav">
                 <ul class="nav-links">
-                    <li><a href="index.html" class="nav-link">Accueil</a></li>
-                    <li><a href="coaches.html" class="nav-link">Coachs</a></li>
+                    <li><a href="./index.php" class="nav-link">Accueil</a></li>
+                    <li><a href="./pages/coaches.php" class="nav-link">Coachs</a></li>
                     <li><a href="about.html" class="nav-link">À propos</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 
                 <div class="nav-actions">
-                    <a href="login.html" class="btn btn-ghost">Connexion</a>
-                    <a href="register.html" class="btn btn-primary">Inscription</a>
+                    <a href="./pages/login.php" class="btn btn-ghost">Connexion</a>
+                    <a href="./pages/register.php" class="btn btn-primary">Inscription</a>
                 </div>
             </nav>
             
@@ -56,8 +56,8 @@
                     Trouvez le coach professionnel qui vous correspond et atteignez vos objectifs sportifs
                 </p>
                 <div class="hero-actions fade-in">
-                    <a href="coaches.html" class="btn btn-primary btn-lg">Trouver un Coach</a>
-                    <a href="register.html" class="btn btn-outline btn-lg">Devenir Coach</a>
+                    <a href="./pages/coaches.php" class="btn btn-primary btn-lg">Trouver un Coach</a>
+                    <a href="./pages/register.php" class="btn btn-outline btn-lg">Devenir Coach</a>
                 </div>
                 
                 <div class="hero-stats fade-in">
@@ -239,10 +239,10 @@
                 <div class="footer-section">
                     <h3>Liens Rapides</h3>
                     <ul class="footer-links">
-                        <li><a href="coaches.html">Trouver un Coach</a></li>
-                        <li><a href="register.html">Devenir Coach</a></li>
-                        <li><a href="about.html">À propos</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="./pages/coaches.php">Trouver un Coach</a></li>
+                        <li><a href="./pages/register.php">Devenir Coach</a></li>
+                        <li><a href="./pages/about.html">À propos</a></li>
+                        <li><a href="./pages/contact.html">Contact</a></li>
                     </ul>
                 </div>
                 

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - CoachPro</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/header-footer.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/contact.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="../pages/index.html" class="logo">
+                <div class="logo-icon">CP</div>
+                <span>CoachPro</span>
+            </a>
+            
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="coaches.html" class="nav-link">Coachs</a></li>
+                    <li><a href="about.html" class="nav-link">À propos</a></li>
+                    <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <a href="login.html" class="btn btn-ghost">Connexion</a>
+                    <a href="register.html" class="btn btn-primary">Inscription</a>
+                </div>
+            </nav>
+            
+            <button class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1 class="fade-in">Contactez-Nous</h1>
+            <p class="hero-subtitle fade-in">Notre équipe est là pour répondre à toutes vos questions</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h2>Envoyez-nous un Message</h2>
+                    <p class="form-description">Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais</p>
+                    
+                    <form id="contactForm" class="contact-form" data-validate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nom">Nom *</label>
+                                <input 
+                                    type="text" 
+                                    id="nom" 
+                                    name="nom" 
+                                    placeholder="Votre nom"
+                                    data-validate="name"
+                                    required
+                                >
+                                <span class="error-message"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="prenom">Prénom *</label>
+                                <input 
+                                    type="text" 
+                                    id="prenom" 
+                                    name="prenom" 
+                                    placeholder="Votre prénom"
+                                    data-validate="name"
+                                    required
+                                >
+                                <span class="error-message"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                placeholder="votre@email.com"
+                                data-validate="email"
+                                required
+                            >
+                            <span class="error-message"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Téléphone</label>
+                            <input 
+                                type="tel" 
+                                id="phone" 
+                                name="phone" 
+                                placeholder="0612345678"
+                                data-validate="phone"
+                            >
+                            <span class="error-message"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Sujet *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Sélectionnez un sujet</option>
+                                <option value="general">Question générale</option>
+                                <option value="sportif">Je suis sportif</option>
+                                <option value="coach">Je suis coach</option>
+                                <option value="technique">Problème technique</option>
+                                <option value="partenariat">Partenariat</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                            <span class="error-message"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea 
+                                id="message" 
+                                name="message" 
+                                rows="6" 
+                                placeholder="Écrivez votre message ici..."
+                                required
+                                minlength="10"
+                            ></textarea>
+                            <span class="error-message"></span>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Envoyer le Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info-container">
+                    <h2>Informations de Contact</h2>
+                    
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <div class="info-icon">📧</div>
+                            <h3>Email</h3>
+                            <p>contact@coachpro.ma</p>
+                            <p>support@coachpro.ma</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-icon">📱</div>
+                            <h3>Téléphone</h3>
+                            <p>+212 6 12 34 56 78</p>
+                            <p>Lun - Ven: 9h - 18h</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-icon">📍</div>
+                            <h3>Adresse</h3>
+                            <p>123 Boulevard Mohammed V</p>
+                            <p>Casablanca 20000, Maroc</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-icon">⏰</div>
+                            <h3>Horaires</h3>
+                            <p>Lundi - Vendredi: 9h - 18h</p>
+                            <p>Samedi: 10h - 14h</p>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="social-section">
+                        <h3>Suivez-nous</h3>
+                        <div class="social-links-large">
+                            <a href="#" class="social-link-large facebook">
+                                <span class="social-icon">f</span>
+                                <span class="social-name">Facebook</span>
+                            </a>
+                            <a href="#" class="social-link-large instagram">
+                                <span class="social-icon">ig</span>
+                                <span class="social-name">Instagram</span>
+                            </a>
+                            <a href="#" class="social-link-large linkedin">
+                                <span class="social-icon">in</span>
+                                <span class="social-name">LinkedIn</span>
+                            </a>
+                            <a href="#" class="social-link-large twitter">
+                                <span class="social-icon">tw</span>
+                                <span class="social-name">Twitter</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title text-center">Questions Fréquentes</h2>
+            <p class="section-subtitle text-center">Trouvez rapidement les réponses à vos questions</p>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Comment réserver une séance avec un coach ?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Il suffit de créer un compte, parcourir les profils de nos coachs, choisir celui qui vous convient et sélectionner un créneau disponible. Vous recevrez une confirmation par email.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Comment devenir coach sur CoachPro ?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Inscrivez-vous en tant que coach, complétez votre profil avec vos certifications et expériences. Notre équipe validera votre candidature sous 48h.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Quels sont les modes de paiement acceptés ?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nous acceptons les cartes bancaires (Visa, Mastercard), les virements bancaires et les paiements mobiles (CMI, Maroc Telecommerce).</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Puis-je annuler ou modifier une réservation ?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Oui, vous pouvez annuler ou modifier une réservation jusqu'à 24h avant la séance sans frais. Après ce délai, des frais d'annulation peuvent s'appliquer.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Les coachs sont-ils certifiés ?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tous nos coachs sont vérifiés et possèdent les certifications requises dans leur discipline. Nous validons leurs diplômes et expériences avant de les accepter sur la plateforme.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Proposez-vous des séances en ligne ?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Oui, de nombreux coachs proposent des séances en ligne via visioconférence. Vous pouvez filtrer les coachs selon cette option lors de votre recherche.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-title text-center">Notre Localisation</h2>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <div class="map-icon">📍</div>
+                    <p>123 Boulevard Mohammed V, Casablanca, Maroc</p>
+                    <a href="https://maps.google.com" target="_blank" class="btn btn-outline">Voir sur Google Maps</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CoachPro</h3>
+                    <p>La plateforme n°1 de mise en relation entre sportifs et coachs professionnels au Maroc.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">ig</a>
+                        <a href="#" class="social-link">tw</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liens Rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="coaches.html">Trouver un Coach</a></li>
+                        <li><a href="register.html">Devenir Coach</a></li>
+                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Disciplines</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Football</a></li>
+                        <li><a href="#">Tennis</a></li>
+                        <li><a href="#">Natation</a></li>
+                        <li><a href="#">Athlétisme</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li>📧 contact@coachpro.ma</li>
+                        <li>📱 +212 6 12 34 56 78</li>
+                        <li>📍 Casablanca, Maroc</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 CoachPro. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/contact.js"></script>
+</body>
+</html>
