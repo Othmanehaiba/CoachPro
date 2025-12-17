@@ -2,11 +2,7 @@
 const Validator = {
     // Regex patterns
     patterns: {
-        email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        phone: /^(\+212|0)[5-7]\d{8}$/,
-        password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        name: /^[a-zA-ZÀ-ÿ\s'-]{2,50}$/,
-        url: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
+        
     },
 
     // Validation messages

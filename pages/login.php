@@ -23,14 +23,14 @@
             
             <nav class="nav">
                 <ul class="nav-links">
-                    <li><a href="index.html" class="nav-link">Accueil</a></li>
-                    <li><a href="coaches.html" class="nav-link">Coachs</a></li>
+                    <li><a href="../index.php" class="nav-link">Accueil</a></li>
+                    <li><a href="coaches.php" class="nav-link">Coachs</a></li>
                     <li><a href="about.html" class="nav-link">À propos</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 
                 <div class="nav-actions">
-                    <a href="register.html" class="btn btn-primary">Inscription</a>
+                    <a href="register.php" class="btn btn-primary">Inscription</a>
                 </div>
             </nav>
             
@@ -132,7 +132,7 @@
                         
                         <p class="auth-footer">
                             Pas encore de compte ? 
-                            <a href="register.html" class="link">Créer un compte</a>
+                            <a href="./register.php" class="link">Créer un compte</a>
                         </p>
                     </form>
                 </div>

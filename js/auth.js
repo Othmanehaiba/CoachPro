@@ -137,9 +137,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     () => {
                         // Redirect based on user role
                         if (data.role === 'coach') {
-                            window.location.href = 'coach-dashboard.html';
+                            window.location.href = 'coach-dashboard.php';
                         } else {
-                            window.location.href = 'sportif-dashboard.html';
+                            window.location.href = 'sportif-dashboard.php';
                         }
                     }
                 );

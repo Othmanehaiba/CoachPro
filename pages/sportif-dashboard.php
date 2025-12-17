@@ -16,7 +16,7 @@
     <!-- Header -->
     <header class="header">
         <div class="header-container">
-            <a href="../pages/index.html" class="logo">
+            <a href="../index.php" class="logo">
                 <div class="logo-icon">CP</div>
                 <span>CoachPro</span>
             </a>
@@ -24,7 +24,7 @@
             <nav class="nav">
                 <ul class="nav-links">
                     <li><a href="sportif-dashboard.html" class="nav-link active">Tableau de bord</a></li>
-                    <li><a href="coaches.html" class="nav-link">Trouver un Coach</a></li>
+                    <li><a href="coaches.php" class="nav-link">Trouver un Coach</a></li>
                     <li><a href="#" class="nav-link">Mes Réservations</a></li>
                     <li><a href="#" class="nav-link">Mon Profil</a></li>
                 </ul>

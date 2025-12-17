@@ -1,3 +1,10 @@
+<?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -23,14 +30,14 @@
             
             <nav class="nav">
                 <ul class="nav-links">
-                    <li><a href="index.html" class="nav-link">Accueil</a></li>
-                    <li><a href="coaches.html" class="nav-link">Coachs</a></li>
+                    <li><a href="../index.php" class="nav-link">Accueil</a></li>
+                    <li><a href="./coaches.php" class="nav-link">Coachs</a></li>
                     <li><a href="about.html" class="nav-link">À propos</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 
                 <div class="nav-actions">
-                    <a href="login.html" class="btn btn-ghost">Connexion</a>
+                    <a href="login.php" class="btn btn-ghost">Connexion</a>
                 </div>
             </nav>
             
@@ -72,19 +79,19 @@
                     <p class="auth-subtitle">Créez votre compte CoachPro</p>
                     
                     <!-- Role Selection -->
-                    <div class="role-selection">
-                        <button type="button" class="role-btn active" data-role="sportif">
-                            <span class="role-icon">🏃</span>
-                            <span class="role-label">Je suis Sportif</span>
-                        </button>
-                        <button type="button" class="role-btn" data-role="coach">
-                            <span class="role-icon">💪</span>
-                            <span class="role-label">Je suis Coach</span>
-                        </button>
-                    </div>
                     
-                    <form id="registerForm" class="auth-form" data-validate>
+                    <form id="registerForm" class="auth-form" method="post" action="registerHandling.php" data-validate>
                         <input type="hidden" id="role" name="role" value="sportif">
+                        <div class="role-selection">
+                            <button type="button" name="sportif" class="role-btn active" data-role="sportif">
+                                <span class="role-icon">🏃</span>
+                                <span class="role-label">Je suis Sportif</span>
+                            </button>
+                            <button type="button" name="coach" class="role-btn" data-role="coach">
+                                <span class="role-icon">💪</span>
+                                <span class="role-label">Je suis Coach</span>
+                            </button>
+                        </div>
                         
                         <div class="form-row">
                             <div class="form-group">
@@ -221,7 +228,7 @@
                         
                         <p class="auth-footer">
                             Déjà un compte ? 
-                            <a href="login.html" class="link">Se connecter</a>
+                            <a href="./login.php" class="link">Se connecter</a>
                         </p>
                     </form>
                 </div>

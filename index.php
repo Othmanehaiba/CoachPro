@@ -26,8 +26,8 @@
                 <ul class="nav-links">
                     <li><a href="./index.php" class="nav-link">Accueil</a></li>
                     <li><a href="./pages/coaches.php" class="nav-link">Coachs</a></li>
-                    <li><a href="about.html" class="nav-link">À propos</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="./pages/about.html" class="nav-link">À propos</a></li>
+                    <li><a href="./pages/contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 
                 <div class="nav-actions">
