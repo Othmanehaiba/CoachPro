@@ -2,7 +2,11 @@
 const Validator = {
     // Regex patterns
     patterns: {
-        
+        email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        phone: /^(\+212|0)[5-7]\d{8}$/,
+        // password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+        name: /^[a-zA-Z\s'-]{2,50}$/,
+        url: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
     },
 
     // Validation messages
@@ -10,7 +14,7 @@ const Validator = {
         required: 'Ce champ est requis',
         email: 'Veuillez entrer une adresse email valide',
         phone: 'Veuillez entrer un numéro de téléphone valide (ex: 0612345678)',
-        password: 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial',
+        // password: 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial',
         name: 'Veuillez entrer un nom valide (2-50 caractères)',
         confirmPassword: 'Les mots de passe ne correspondent pas',
         minLength: 'Ce champ doit contenir au moins {min} caractères',
@@ -378,12 +382,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('form[data-validate]').forEach(form => {
         Validator.setupRealtimeValidation(form);
         
+        // FIXED: Only prevent submission if validation fails
         form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (Validator.validateForm(form)) {
-                // Form is valid, proceed with submission
-                console.log('Form is valid');
-                // Add your form submission logic here
+            if (!Validator.validateForm(form)) {
+                e.preventDefault(); // Only prevent if invalid
+                console.log('Form validation failed');
+            } else {
+                console.log('Form is valid - submitting to PHP');
+                // Form will submit naturally to registerHandling.php
             }
         });
     });

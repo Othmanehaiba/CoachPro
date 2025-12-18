@@ -1,8 +1,14 @@
 <?php 
-    require "../CoachPro/pages/register.php";
-    require "./database/db.php";
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    require "../database/db.php";
+     //require "../pages/register.php";
 
-    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['coach']) && isset($_POST['submit'])){
+    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){
+        echo "NOKKKKK";
+        if(!empty($_POST['photoUrl']))
+            $url = $_POST['photoUrl'];
         if(!empty($_POST['nom']))
             $nom = $_POST['nom'];
         if(!empty($_POST['prenom']))
@@ -16,22 +22,23 @@
         if(!empty($_POST['experience']))
             $experience = $_POST['experience'];
 
-    $sql = "INSERT INTO user (email, mdp, firstName, lastName)
-     VALUES('$email_signup' , '$sign_pass' , '$fname' , '$lname')";
-    $row = $conn->query($sql);  
-    header("Location: ./pages/login.php");
-    exit();
-          
-    }
+        $hash = password_hash($password,PASSWORD_DEFAULT);
 
-    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sportif'])){
-        if(!empty($_POST['nom']))
-            $nom = $_POST['nom'];
-        if(!empty($_POST['prenom']))
-            $prenom = $_POST['prenom'];
-        if(!empty($_POST['email']))
-            $email = $_POST['email'];
-        if(!empty($_POST['password']))
-            $password = $_POST['password'];
+        // password_verify($password,$hash);
+
+        $stmt = $conn->prepare("INSERT INTO user (nom, prenom, email, pass, photo, role) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssss", $nom, $prenom, $email, $hash, $url, $_POST['role']);
+         
+
+        if ($stmt->execute()) {
+                    echo "A";
+
+            header("Location: ../pages/login.php");
+            exit();
+        } else {
+                    echo "B";
+
+            die("Insert error: " . $stmt->error);
+        }
     }
 ?>

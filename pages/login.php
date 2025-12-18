@@ -71,7 +71,7 @@
                     <h1>Connexion</h1>
                     <p class="auth-subtitle">Accédez à votre compte CoachPro</p>
                     
-                    <form id="loginForm" class="auth-form" data-validate>
+                    <form id="loginForm" class="auth-form" method="POST" action="../handling/loginHandling.php" data-validate>
                         <div class="form-group">
                             <label for="email">Adresse Email</label>
                             <input 
@@ -111,7 +111,7 @@
                             <a href="forgot-password.html" class="link">Mot de passe oublié ?</a>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary btn-block">
+                        <button type="submit" name="submit" class="btn btn-primary btn-block">
                             Se connecter
                         </button>
                         

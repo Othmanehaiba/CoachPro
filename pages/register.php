@@ -77,11 +77,10 @@
                 <div class="auth-form-content">
                     <h1>Inscription</h1>
                     <p class="auth-subtitle">Créez votre compte CoachPro</p>
-                    
-                    <!-- Role Selection -->
-                    
-                    <form id="registerForm" class="auth-form" method="post" action="registerHandling.php" data-validate>
+                                        
+                    <form id="registerForm" class="auth-form" method="POST" action="../handling/registerHandling.php" data-validate>                         
                         <input type="hidden" id="role" name="role" value="sportif">
+    
                         <div class="role-selection">
                             <button type="button" name="sportif" class="role-btn active" data-role="sportif">
                                 <span class="role-icon">🏃</span>
@@ -92,27 +91,45 @@
                                 <span class="role-label">Je suis Coach</span>
                             </button>
                         </div>
-                        
+
+                        <!-- Photo URL Input with Preview -->
+                        <div class="form-group photo-input-group">
+                            <label for="photoUrl">Photo de profil (URL)</label>
+                            <div class="photo-input-wrapper">
+                                <input
+                                    type="url"
+                                    id="photoUrl"
+                                    name="photoUrl"
+                                    placeholder="https://exemple.com/photo.jpg"
+                                    data-validate="url"
+                                >
+                                <div id="photoPreview" class="photo-preview hidden">
+                                    <img id="previewImage" src="" alt="Aperçu">
+                                </div>
+                            </div>
+                            <span class="error-message"></span>
+                        </div>
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="nom">Nom</label>
-                                <input 
-                                    type="text" 
-                                    id="nom" 
-                                    name="nom" 
+                                <input
+                                    type="text"
+                                    id="nom"
+                                    name="nom"
                                     placeholder="Votre nom"
                                     data-validate="name"
                                     required
                                 >
                                 <span class="error-message"></span>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="prenom">Prénom</label>
-                                <input 
-                                    type="text" 
-                                    id="prenom" 
-                                    name="prenom" 
+                                <input
+                                    type="text"
+                                    id="prenom"
+                                    name="prenom"
                                     placeholder="Votre prénom"
                                     data-validate="name"
                                     required
@@ -120,27 +137,27 @@
                                 <span class="error-message"></span>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="email">Adresse Email</label>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                name="email" 
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
                                 placeholder="votre@email.com"
                                 data-validate="email"
                                 required
                             >
                             <span class="error-message"></span>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="password">Mot de passe</label>
                             <div class="password-input">
-                                <input 
-                                    type="password" 
-                                    id="password" 
-                                    name="password" 
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
                                     placeholder="Minimum 8 caractères"
                                     data-validate="password"
                                     required
@@ -151,14 +168,14 @@
                             </div>
                             <span class="error-message"></span>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="confirmPassword">Confirmer le mot de passe</label>
                             <div class="password-input">
-                                <input 
-                                    type="password" 
-                                    id="confirmPassword" 
-                                    name="confirmPassword" 
+                                <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    name="confirmPassword"
                                     placeholder="Confirmer votre mot de passe"
                                     data-confirm="password"
                                     required
@@ -169,52 +186,14 @@
                             </div>
                             <span class="error-message"></span>
                         </div>
-                        
-                        <!-- Coach specific fields (hidden by default) -->
-                        <div id="coachFields" class="coach-fields hidden">
-                            <div class="form-group">
-                                <label for="discipline">Discipline principale</label>
-                                <select id="discipline" name="discipline">
-                                    <option value="">Sélectionnez une discipline</option>
-                                    <option value="football">Football</option>
-                                    <option value="tennis">Tennis</option>
-                                    <option value="natation">Natation</option>
-                                    <option value="athletisme">Athlétisme</option>
-                                    <option value="combat">Sports de Combat</option>
-                                    <option value="fitness">Préparation Physique</option>
-                                </select>
-                                <span class="error-message"></span>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="experience">Années d'expérience</label>
-                                <input 
-                                    type="number" 
-                                    id="experience" 
-                                    name="experience" 
-                                    placeholder="Ex: 5"
-                                    min="0"
-                                    max="50"
-                                >
-                                <span class="error-message"></span>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="terms" required>
-                                <span>J'accepte les <a href="#" class="link">conditions d'utilisation</a> et la <a href="#" class="link">politique de confidentialité</a></span>
-                            </label>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary btn-block">
+                        <button type="submit" name="submit" class="btn btn-primary btn-block">
                             Créer mon compte
                         </button>
-                        
+
                         <div class="auth-divider">
                             <span>OU</span>
                         </div>
-                        
+
                         <div class="social-login">
                             <button type="button" class="btn-social btn-google">
                                 <span class="social-icon">G</span>
@@ -225,7 +204,7 @@
                                 S'inscrire avec Facebook
                             </button>
                         </div>
-                        
+
                         <p class="auth-footer">
                             Déjà un compte ? 
                             <a href="./login.php" class="link">Se connecter</a>
@@ -238,7 +217,6 @@
 
     <!-- Scripts -->
     <script src="../js/utils.js"></script>
-    <script src="../js/navigation.js"></script>
     <script src="../js/auth.js"></script>
 </body>
 </html>

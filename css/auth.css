@@ -312,6 +312,27 @@
     margin-top: var(--spacing-md);
 }
 
+.photo-preview {
+    margin-top: 10px;
+    text-align: center;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.photo-preview.hidden {
+    display: none;
+}
+
+.photo-preview img {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .auth-container {
