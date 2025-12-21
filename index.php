@@ -1,9 +1,3 @@
-<?php
-if(!isset($_SESSION['user_id'])){
-    header("Location: ./pages/login.php");
-}
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -31,7 +25,7 @@ if(!isset($_SESSION['user_id'])){
             <nav class="nav">
                 <ul class="nav-links">
                     <li><a href="./index.php" class="nav-link">Accueil</a></li>
-                    <li><a href="./pages/coaches.php" class="nav-link">Coachs</a></li>
+                    <!-- <li><a href="./pages/coaches.php" class="nav-link">Coachs</a></li> -->
                     <li><a href="./pages/about.html" class="nav-link">À propos</a></li>
                     <li><a href="./pages/contact.html" class="nav-link">Contact</a></li>
                 </ul>

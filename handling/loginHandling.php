@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $_SESSION['prenom'] = $user['prenom'];
     $_SESSION['email'] = $user['email'];
     $_SESSION['role'] = $user['role'];
+    $_SESSION['photoURL'] = $user['photo'];
 
 
     if ($user['role'] === 'coach') {

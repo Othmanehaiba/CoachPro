@@ -23,7 +23,7 @@
     <!-- Header -->
     <header class="header">
         <div class="header-container">
-            <a href="../pages/index.html" class="logo">
+            <a href="../index.php" class="logo">
                 <div class="logo-icon">CP</div>
                 <span>CoachPro</span>
             </a>
@@ -31,7 +31,7 @@
             <nav class="nav">
                 <ul class="nav-links">
                     <li><a href="../index.php" class="nav-link">Accueil</a></li>
-                    <li><a href="./coaches.php" class="nav-link">Coachs</a></li>
+                    <!-- <li><a href="./coaches.php" class="nav-link">Coachs</a></li> -->
                     <li><a href="about.html" class="nav-link">À propos</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>

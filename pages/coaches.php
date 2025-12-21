@@ -1,3 +1,8 @@
+<?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+require "../database/db.php";
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -120,19 +125,82 @@
             </div>
             
             <div id="coachesGrid" class="coaches-grid">
-                <!-- Coach cards will be dynamically inserted here -->
-            </div>
-            
-            <div class="pagination">
-                <button class="btn btn-ghost" disabled>Précédent</button>
-                <div class="pagination-numbers">
-                    <button class="page-btn active">1</button>
-                    <button class="page-btn">2</button>
-                    <button class="page-btn">3</button>
-                    <span>...</span>
-                    <button class="page-btn">10</button>
-                </div>
-                <button class="btn btn-ghost">Suivant</button>
+                <?php
+                        
+                    $res = $conn->query("SELECT * FROM coach");
+
+                    while ($ro = $res->fetch_assoc()) {
+
+    
+                        if (!empty($ro['photo'])) {
+                            $photoHtml = "<img src='{$ro['photo']}' alt='{$ro['prenom']} {$ro['nom']}'>";
+                        } else {
+                            $photoHtml = "
+                            <div style='
+                                width:100%;
+                                height:100%;
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                font-size:4rem;
+                                color:white;
+                            '>👤</div>
+                            ";
+                        }
+
+                                echo "
+                                <div class='coach-card'>
+
+                                    <div class='coach-image'>
+                                        $photoHtml
+
+                                        <div class='coach-rating'>
+                                            ⭐ 4.5 (20)
+                                        </div>
+                                    </div>
+
+                                    <div class='coach-content'>
+                                        <div class='coach-header'>
+                                            <h3 class='coach-name'>{$ro['prenom']} {$ro['nom']}</h3>
+                                            <div class='coach-discipline'>
+                                                <span>🏆</span> Coach sportif
+                                            </div>
+                                        </div>
+
+                                        <p class='coach-bio'>
+                                            Coach professionnel expérimenté.
+                                        </p>
+
+                                        <div class='coach-info'>
+                                            <div class='info-item'>
+                                                <span class='info-icon'>📅</span>
+                                                <span>{$ro['annees_experience']} ans d'exp.</span>
+                                            </div>
+
+                                            <div class='info-item'>
+                                                <span class='info-icon'>🎓</span>
+                                                <span>Certifié</span>
+                                            </div>
+                                        </div>
+
+                                        <div class='coach-footer'>
+                                            <div class='coach-price'>
+                                                150 DH
+                                                <div class='price-label'>/séance</div>
+                                            </div>
+
+                                            <button class='btn btn-primary'
+                                                onclick=\"bookCoach({$ro['id_coach']})\">
+                                                Réserver
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                ";
+                    }               
+                ?>
+
             </div>
         </div>
     </section>

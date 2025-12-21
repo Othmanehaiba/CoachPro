@@ -1,3 +1,16 @@
+<?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+session_start();
+require "../database/db.php";
+// require "../pages/login.php";
+
+// $nom = $_SESSION['nom'];
+$prenom = $_SESSION['prenom'];
+// $email = $_SESSION['email'];
+// $photo = $_SESSION['photo'];
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -26,7 +39,7 @@
                 <ul class="nav-links">
                     <li><a href="coach-dashboard.html" class="nav-link active">Tableau de bord</a></li>
                     <li><a href="#" class="nav-link">Mes Disponibilités</a></li>
-                    <li><a href="#" class="nav-link">Mes Séances</a></li>
+                    <!-- <li><a href="#" class="nav-link">Mes Séances</a></li> -->
                     <li><a href="#" class="nav-link">Mon Profil</a></li>
                 </ul>
                 
@@ -49,7 +62,7 @@
             <!-- Welcome Banner -->
             <div class="welcome-banner coach-banner">
                 <div class="welcome-content">
-                    <h1>Bienvenue Coach <span id="coachName">Ahmed</span>! 💪</h1>
+                    <h1>Bienvenue Coach <span id="coachName"><?php echo $prenom ?></span>! 💪</h1>
                     <p>Gérez vos séances et votre planning</p>
                 </div>
                 <a href="#" class="btn btn-primary">Gérer les Disponibilités</a>
@@ -60,16 +73,27 @@
                 <div class="stat-card stat-primary">
                     <div class="stat-icon">⏳</div>
                     <div class="stat-details">
-                        <h3>5</h3>
+                        <h3><?php 
+                        $res = $conn->query("select count(id_reservation) as total from reservation
+                        where statut = 'en Attente'");
+                        $row = $res->fetch_assoc();
+                        echo $row['total'];
+                        ?></h3>
                         <p>Demandes en attente</p>
                     </div>
-                    <div class="stat-trend up">+2</div>
                 </div>
                 
                 <div class="stat-card stat-success">
                     <div class="stat-icon">✓</div>
                     <div class="stat-details">
-                        <h3>3</h3>
+                        <h3><?php 
+                        $res = $conn->query("SELECT count(id_reservation) as total
+                                                FROM reservation
+                                                WHERE date_reservation = CURDATE() and id_coach = 2;
+                                            ");
+                        $row = $res->fetch_assoc();
+                        echo $row['total'];
+                        ?></h3>
                         <p>Séances aujourd'hui</p>
                     </div>
                 </div>
@@ -77,7 +101,14 @@
                 <div class="stat-card stat-info">
                     <div class="stat-icon">📅</div>
                     <div class="stat-details">
-                        <h3>7</h3>
+                        <h3><?php 
+                        $res = $conn->query("SELECT count(id_reservation) as total
+                                                FROM reservation
+                                                WHERE date_reservation = CURDATE() + INTERVAL 1 DAY and id_coach = 2;
+                                            ");
+                        $row = $res->fetch_assoc();
+                        echo $row['total'];
+                        ?></h3>
                         <p>Séances demain</p>
                     </div>
                 </div>
@@ -85,7 +116,14 @@
                 <div class="stat-card stat-warning">
                     <div class="stat-icon">⭐</div>
                     <div class="stat-details">
-                        <h3>4.9</h3>
+                        <h3><?php
+                            $res = $conn->query("select avg(r.id_coach) as avrege
+                                                    from avis a 
+                                                    join reservation r on r.id_reservation = a.id_reservation
+                                                    where r.id_coach = 2");
+                            $row = $res->fetch_assoc();
+                            echo number_format($row['avrege'], 1);
+                         ?></h3>
                         <p>Note moyenne</p>
                     </div>
                 </div>
@@ -97,123 +135,57 @@
                 <div class="dashboard-card requests-card">
                     <div class="card-header">
                         <h2>Demandes en Attente</h2>
-                        <span class="badge badge-primary">5 nouvelles</span>
+                        <span class="badge badge-primary"><?php 
+                            $res = $conn->query("select count(r.id_reservation) as total
+                                                    from reservation r 
+                                                    join sportif s on r.id_sportif = s.id_sportif
+                                                    join Coachdiscipline cd on cd.id_coach = r.id_coach
+                                                    join coach c on cd.id_coach = cd.id_coach
+                                                    join disciplineSportif d on cd.id_discipline = d.id_discipline
+                                                    where r.statut = 'en Attente'");
+                            $row = $res->fetch_assoc();
+                            echo $row['total'];
+                             ?> nouvelles</span>
                     </div>
                     <div class="requests-list">
-                        <div class="request-item">
-                            <div class="request-info">
-                                <div class="request-avatar">👤</div>
-                                <div class="request-details">
-                                    <h4>Youssef Benali</h4>
-                                    <p class="request-discipline">Football - Technique</p>
-                                    <div class="request-meta">
-                                        <span class="request-date">📅 Lun 18 Déc - 14:00</span>
-                                        <span class="request-duration">⏱️ 1h30</span>
+                        <?php 
+                            $res = $conn->query("select s.nom, s.prenom, d.nom_discipline, r.date_reservation
+                                                    from reservation r 
+                                                    join sportif s on r.id_sportif = s.id_sportif
+                                                    join Coachdiscipline cd on cd.id_coach = r.id_coach
+                                                    join coach c on cd.id_coach = cd.id_coach
+                                                    join disciplineSportif d on cd.id_discipline = d.id_discipline
+                                                    where r.statut = 'en Attente'");
+                            while($row = $res->fetch_assoc()){
+                                echo "
+                                    <div class='request-item'>
+                            <div class='request-info'>
+                                <div class='request-avatar'>👤</div>
+                                <div class='request-details'>
+                                    <h4>{$row['nom']}</h4>
+                                    <p class='request-discipline'>{$row['nom_discipline']}</p>
+                                    <div class='request-meta'>
+                                        <span class='request-date'>📅 {$row['date_reservation']}</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="request-actions">
-                                <button class="btn btn-success btn-sm" onclick="acceptRequest(1)">
+                            <div class='request-actions'>
+                                <button class='btn btn-success btn-sm' name='accepte' onclick='acceptRequest(1)'>
                                     ✓ Accepter
                                 </button>
-                                <button class="btn btn-danger btn-sm" onclick="rejectRequest(1)">
+                                <button class='btn btn-danger btn-sm' name='refuse' onclick='rejectRequest(1)'>
                                     ✕ Refuser
                                 </button>
                             </div>
                         </div>
-
-                        <div class="request-item">
-                            <div class="request-info">
-                                <div class="request-avatar">👤</div>
-                                <div class="request-details">
-                                    <h4>Sara Alami</h4>
-                                    <p class="request-discipline">Football - Préparation physique</p>
-                                    <div class="request-meta">
-                                        <span class="request-date">📅 Mar 19 Déc - 10:00</span>
-                                        <span class="request-duration">⏱️ 1h</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="request-actions">
-                                <button class="btn btn-success btn-sm" onclick="acceptRequest(2)">
-                                    ✓ Accepter
-                                </button>
-                                <button class="btn btn-danger btn-sm" onclick="rejectRequest(2)">
-                                    ✕ Refuser
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="request-item">
-                            <div class="request-info">
-                                <div class="request-avatar">👤</div>
-                                <div class="request-details">
-                                    <h4>Karim Tazi</h4>
-                                    <p class="request-discipline">Football - Tactique</p>
-                                    <div class="request-meta">
-                                        <span class="request-date">📅 Mer 20 Déc - 16:00</span>
-                                        <span class="request-duration">⏱️ 2h</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="request-actions">
-                                <button class="btn btn-success btn-sm" onclick="acceptRequest(3)">
-                                    ✓ Accepter
-                                </button>
-                                <button class="btn btn-danger btn-sm" onclick="rejectRequest(3)">
-                                    ✕ Refuser
-                                </button>
-                            </div>
-                        </div>
+                                ";
+                            }
+                           
+                        ?>
                     </div>
                     <a href="#" class="view-all-link">Voir toutes les demandes →</a>
                 </div>
-
-                <!-- Next Session -->
-                <div class="dashboard-card next-session-card">
-                    <div class="card-header">
-                        <h2>Prochaine Séance</h2>
-                    </div>
-                    <div class="next-session">
-                        <div class="session-time-block">
-                            <div class="session-time">14:00</div>
-                            <div class="session-date">Aujourd'hui</div>
-                        </div>
-                        <div class="session-divider"></div>
-                        <div class="session-info-block">
-                            <div class="client-info">
-                                <div class="client-avatar-large">👤</div>
-                                <div>
-                                    <h3>Mohamed Idrissi</h3>
-                                    <p class="client-type">Sportif Amateur</p>
-                                </div>
-                            </div>
-                            <div class="session-details-grid">
-                                <div class="detail-item">
-                                    <span class="detail-icon">🏃</span>
-                                    <span>Football - Technique</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-icon">⏱️</span>
-                                    <span>1h30</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-icon">📍</span>
-                                    <span>Stade Municipal</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-icon">📱</span>
-                                    <span>06 12 34 56 78</span>
-                                </div>
-                            </div>
-                            <div class="session-actions-bottom">
-                                <button class="btn btn-outline btn-sm">Voir les détails</button>
-                                <button class="btn btn-primary btn-sm">Démarrer la séance</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                
                 <!-- Today's Schedule -->
                 <div class="dashboard-card schedule-card">
                     <div class="card-header">
@@ -221,41 +193,26 @@
                         <span class="schedule-date">Lundi 18 Décembre</span>
                     </div>
                     <div class="schedule-timeline">
-                        <div class="timeline-item confirmed">
-                            <div class="timeline-time">09:00</div>
-                            <div class="timeline-content">
-                                <h4>Séance de préparation physique</h4>
-                                <p>Fatima Zahra - 1h</p>
-                                <span class="status-badge status-confirmed">Confirmée</span>
+                        <?php
+                            $res = $conn->query("select s.nom, s.prenom, d.nom_discipline
+                                                    from reservation r 
+                                                    join sportif s on r.id_sportif = s.id_sportif
+                                                    join Coachdiscipline cd on cd.id_coach = r.id_coach
+                                                    join coach c on cd.id_coach = cd.id_coach
+                                                    join disciplineSportif d on cd.id_discipline = d.id_discipline
+                                                    where r.statut = 'accepté' and r.date_reservation = CURDATE()");
+                            while($row = $res->fetch_assoc()){
+                                echo "
+                                    <div class='timeline-item confirmed'>
+                                        <div class='timeline-content'>
+                                            <h4>{$row['nom_discipline']}</h4>
+                                            <p>{$row['nom']} {$row['prenom']}</p>
+                                <span class='status-badge status-confirmed'>Confirmée</span>
                             </div>
                         </div>
-
-                        <div class="timeline-item confirmed">
-                            <div class="timeline-time">14:00</div>
-                            <div class="timeline-content">
-                                <h4>Technique et tactique</h4>
-                                <p>Mohamed Idrissi - 1h30</p>
-                                <span class="status-badge status-confirmed">Confirmée</span>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item confirmed">
-                            <div class="timeline-time">17:00</div>
-                            <div class="timeline-content">
-                                <h4>Entraînement collectif</h4>
-                                <p>Groupe U17 - 2h</p>
-                                <span class="status-badge status-confirmed">Confirmée</span>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item available">
-                            <div class="timeline-time">20:00</div>
-                            <div class="timeline-content">
-                                <h4>Créneau disponible</h4>
-                                <p>Aucune réservation</p>
-                                <span class="status-badge status-available">Disponible</span>
-                            </div>
-                        </div>
+                                    ";
+                            }                        
+                        ?>
                     </div>
                 </div>
 
@@ -363,3 +320,6 @@
     <script src="../js/coach-dashboard.js"></script>
 </body>
 </html>
+
+
+

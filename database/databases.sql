@@ -97,3 +97,24 @@ create table avis(
     foreign key(id_reservation) references reservation(id_reservation),
     foreign key(id_user) references user(id_user)
 );
+
+SELECT 
+                                    r.date_reservation,
+                                    s.nom,
+                                    s.prenom,
+                                    d.nom_discipline
+                                FROM reservation r
+                                JOIN coach c ON r.id_coach = c.id_coach
+                                JOIN Coachdiscipline cd ON c.id_coach = cd.id_coach
+                                JOIN disciplineSportif d ON cd.id_discipline = d.id_discipline
+                                JOIN sportif s ON r.id_sportif = s.id_sportif
+                                ORDER BY r.date_reservation ASC;
+
+select count(c.nom) as total
+from sportif s 
+join reservation r on r.id_sportif = s.id_sportif
+join coach c on c.id_coach = r.id_coach
+where s.id_sportif = 1;
+
+select count(id_reservation) as total from reservation
+                        where statut = 'en Attente'
